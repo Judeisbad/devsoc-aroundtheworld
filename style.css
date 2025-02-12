@@ -1,0 +1,51 @@
+* {
+    /* cursor: url("./img/cursorPS.png"); */
+    cursor: none;
+}
+
+body {
+    font-family: Lato, ui-sans-serif;
+}
+
+.custom-cursor {
+    position: fixed;
+    width: 24px;
+    height: 24px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-image: url("./img/circlecursor.png");
+    pointer-events: none;
+}
+
+.link-hover {
+    background-image: url("./img/circlecursorOutline.png");
+    transition: background-image 0.2s ease-in-out;
+}
+
+.custom-cursor-earth {
+    position: fixed;
+    width: 24px;
+    height: 24px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-image: url("./img/earth32.png");
+    pointer-events: none;
+    /* transition: background-color 0.3s ease-in-out; */
+}
+
+.rotating-image {
+    animation: rotate 5s linear infinite;
+}
+
+.custom-cursor {
+    transform-origin: 16.3px 17px;
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
