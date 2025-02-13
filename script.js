@@ -30,18 +30,35 @@ document.querySelectorAll('a, button').forEach((element) => {
 
 // Shows/Hides dropdown list 
 function toggleDropdown() {
-    document.getElementById("navDropdown").classList.toggle("show");
+    const dropdownContent = document.getElementById("navDropdown")
+    dropdownContent.classList.toggle("show");
+
+    const selectedText = document.querySelector(".dropbutton .language").textContent;
+    const dropdownItems = dropdownContent.querySelectorAll("a");
+
+    dropdownItems.forEach((item) => {
+        if (item.textContent === selectedText) {
+            item.style.display = "none";
+        } else {
+            item.style.display = "block";
+        }
+    });
 }
 
 window.onclick = function (event) {
-    if (!event.target.matches(".dropbutton")) {
+    if (!event.target.matches(".dropbutton, .dropbutton *")) {
         let dropdowns = document.getElementsByClassName("dropdown-content");
-        let i;
-        for (i = 0; i < dropdowns.length; i++) {
+        for (let i = 0; i < dropdowns.length; i++) {
             let openDropdown = dropdowns[i];
             if (openDropdown.classList.contains("show")) {
                 openDropdown.classList.remove("show");
             }
         }
     }
+}
+// Update dropdown when selected 
+function updateSelection(selection) {
+    const dropButton = document.getElementById("dropbutton-selection");
+    dropButton.textContent = selection;
+    document.getElementById("navDropdown").classList.remove("show");
 }

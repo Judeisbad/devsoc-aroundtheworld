@@ -5,15 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Around the World</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="./img/KL.svg">
     <script src="script.js" defer></script>
 </head>
 <body>
     <header>
         <nav class="translate-menu">
+            <img class="logo" src="./img/GooGooGaga.svg" alt="GooGooGaga">
             <span class="translate-text">Translate</span>
-            <div>
+            <div id="original-language-container">
                 <button>
-                    <div class="language">
+                    <div id="original-language" class="language">
                         English
                     </div>
                 </button>
@@ -21,12 +23,16 @@
             <div class="translate-arrow-right">
             </div>
             <div class="language dropdown">
-                <button onclick="toggleDropdown()" class="dropbutton">Home</button>
-                <div class="translate-arrow-down"></div>
-                <div id="navDropdown" class="dropdown-content">
-                    <a href="#">Home</a>
-                    <a href="#">About</a>
-                    <a href="#">Interests</a>
+                <div id="translated-language-container">
+                    <button onclick="toggleDropdown()" class="dropbutton">
+                        <span id="dropbutton-selection" class="language">Home</span>
+                        <div class="translate-arrow-down"></div>
+                    </button>
+                </div>
+                <div id="navDropdown" class="dropdown-content language">
+                    <a href="#" onclick="updateSelection('Home')">Home</a>
+                    <a href="#" onclick="updateSelection('About')">About</a>
+                    <a href="#" onclick="updateSelection('Interests')">Interests</a>
                 </div>
             </div>
         </nav>
