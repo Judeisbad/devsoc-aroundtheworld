@@ -2,23 +2,32 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Doto:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=B612:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
 * {
     /* cursor: url("./img/cursorPS.png"); */
     cursor: none;
 }
 
+html, body {
+    height: 100%;
+}
+
 body {
     font-family: Lato, ui-sans-serif;
     box-sizing: border-box;
     margin-top: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
 }
 
 a {
     text-decoration: none;  
 }
 
-header {
+nav {
     border-bottom: 1px solid rgba(0, 0, 0, 0.15);
     height: auto;
 }
@@ -34,7 +43,7 @@ header {
 }
 
 .custom-cursor {
-    background-image: url("./img/circlecursor.png");
+    background-image: url("./img/circlecursorOutline.png");
 }
 
 .custom-cursor-earth {
@@ -42,7 +51,7 @@ header {
 }
 
 .link-hover {
-    background-image: url("./img/circlecursorOutline.png");
+    background-image: url("./img/circlecursor.png");
     transition: background-image 0.2s ease-in-out;
 }
 
@@ -65,7 +74,7 @@ header {
 
 .logo {
     height: 90%;
-    margin-left: 15px;
+    margin-left: 25px;
     margin-top:3px;
 }
 
@@ -130,6 +139,7 @@ header {
 
 .dropdown-content a {
     color: rgb(50, 50, 50);
+    /* background-color: white; */
 }
 
 .translate-arrow-down {
@@ -151,15 +161,17 @@ header {
     display: none;
     position: absolute;
     min-width: 160px;
-    z-index: 1;
-    box-shadow: 0px 3px 10px rgba(200, 200, 200, 0.3),
-      -5px 4px 5px rgba(200, 200, 200, 0.3), 5px 4px 5px rgba(200, 200, 200, 0.3);
+    z-index: 5;
+    box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.3),
+      -5px 4px 5px rgba(0, 0, 0, 0.2), 5px 4px 5px rgba(0, 0, 0, 0.2);
 }
 
 .dropdown-content a {
     padding: 12px 16px;
     text-decoration: none;
     display: block;
+    background-color: white;
+    z-index: 1;
 }
 
 .dropdown-content a:hover, #original-language-container:hover {
@@ -178,4 +190,58 @@ header {
 
 .show {
     display:block;
+}
+
+.homepage-title {
+    font-size: 75px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    z-index: 1;
+}
+.homepage-title h1 {
+    margin: 0px;
+    padding: 0px;
+    font-family: "Doto", Arial, sans-serif;
+}
+
+main {
+    height: calc(100vh - 56px - 41px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: rgb(39, 45, 57);
+    color: white;
+    flex: 1;
+}
+
+.header-departures {
+    /* height: 80px; */
+}
+
+.yellow-bg {
+    background-color: rgb(255, 204, 1);
+    height: 80px;
+    display: flex;
+    align-items: center;
+    /* justify-content: space-between; */
+    padding-right: 20px;
+    padding-left: 30px;
+}
+
+#departures {
+    font-family: "B612", Arial, Helvetica, sans-serif;
+    font-size: 45px;
+    flex: 1;
+}
+
+#departure-icon {
+    height: 70%;
+}
+
+main div img {
+    height: 100%;
 }
