@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
+
 * {
     /* cursor: url("./img/cursorPS.png"); */
     cursor: none;
@@ -5,32 +8,34 @@
 
 body {
     font-family: Lato, ui-sans-serif;
+    box-sizing: border-box;
 }
 
-.custom-cursor {
+a {
+    text-decoration: none;  
+}
+
+.custom-cursor, .custom-cursor-earth {
     position: fixed;
     width: 24px;
     height: 24px;
     background-size: contain;
     background-repeat: no-repeat;
-    background-image: url("./img/circlecursor.png");
     pointer-events: none;
+    z-index: 10;
+}
+
+.custom-cursor {
+    background-image: url("./img/circlecursor.png");
+}
+
+.custom-cursor-earth {
+    background-image: url("./img/earth32.png");
 }
 
 .link-hover {
     background-image: url("./img/circlecursorOutline.png");
     transition: background-image 0.2s ease-in-out;
-}
-
-.custom-cursor-earth {
-    position: fixed;
-    width: 24px;
-    height: 24px;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-image: url("./img/earth32.png");
-    pointer-events: none;
-    /* transition: background-color 0.3s ease-in-out; */
 }
 
 .rotating-image {
@@ -48,4 +53,87 @@ body {
     to {
         transform: rotate(360deg);
     }
+}
+
+.translate-text {
+    color: rgb(95, 99, 104);
+    font-size: 21px;
+    margin-left: 10px;
+    margin-right: 10px;
+    font-weight: 550;
+}
+
+.translate-menu {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    height: 40px;
+    font-family: "Open Sans", Arial, sans-serif;
+}
+
+.translate-menu button {
+    height: 100%;
+    padding: 20px;
+    border: none;
+    background: none;
+    font-family: "Open Sans", Arial, sans-serif;
+}
+
+.translate-menu button:hover {
+    background: rgba(200, 200, 200, 0.15);
+}
+
+.translate-arrow-right {
+    background-image: url("./img/right-arrow.png");
+    background-size: contain;
+    background-repeat: none;
+    background-position: center;
+    height: 20px;
+    width: 20px;
+    opacity: 0.4;
+}
+
+.language {
+    font-weight: 500;
+    font-size: 14px;
+    color: rgb(120, 120, 120);
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown button, .dropdown-content a {
+    color: rgb(0, 119, 255);
+}
+
+.translate-arrow-down {
+    background-image: url("./img/downArrow.png");
+    background-size: contain;
+    background-repeat: none;
+    background-position: center;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    min-width: 160px;
+    z-index: 1;
+}
+
+.dropdown-content a {
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #ddd;
+}
+
+
+
+.show {
+    display:block;
 }

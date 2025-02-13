@@ -27,3 +27,21 @@ document.querySelectorAll('a, button').forEach((element) => {
         cursor.classList.remove('link-hover'); // Remove color
     });
 });
+
+// Shows/Hides dropdown list 
+function toggleDropdown() {
+    document.getElementById("navDropdown").classList.toggle("show");
+}
+
+window.onclick = function (event) {
+    if (!event.target.matches(".dropbutton")) {
+        let dropdowns = document.getElementsByClassName("dropdown-content");
+        let i;
+        for (i = 0; i < dropdowns.length; i++) {
+            let openDropdown = dropdowns[i];
+            if (openDropdown.classList.contains("show")) {
+                openDropdown.classList.remove("show");
+            }
+        }
+    }
+}
