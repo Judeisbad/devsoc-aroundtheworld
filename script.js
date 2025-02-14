@@ -1,6 +1,34 @@
 const cursor = document.querySelector(".custom-cursor");
 const cursorEarth = document.querySelector(".custom-cursor-earth");
+const headerContainer = document.getElementById("header-container");
+const contentContainer = document.getElementById("content");
 
+function loadPage(page) {
+    const loadingScreen = document.getElementById("loading-screen");
+
+    Promise.all([
+        fetch(`./html/${page}/${page}-header.html`).then(response => response.text()),
+        fetch(`./html/${page}/${page}.html`).then(response => response.text())
+    ]).then(([headerData, contentData]) => {
+        headerContainer.innerHTML = headerData;
+        contentContainer.innerHTML = contentData;
+        // Set body class to current pagename
+        document.body.className = `${page}-page`
+        
+        // Track last page used
+        localStorage.setItem("lastPage", page);
+
+        updateSelection(page);
+    })
+}
+
+// Page changing scripts
+document.addEventListener("DOMContentLoaded", () => {
+    const lastPage = localStorage.getItem("lastPage") || "home";
+    loadPage(lastPage);
+});
+
+// Custom mouse cursor
 document.addEventListener("mousemove", (e) => {
     cursor.style.left = `${e.clientX}px`;
     cursor.style.top = `${e.clientY}px`;
@@ -54,11 +82,16 @@ window.onclick = function (event) {
                 openDropdown.classList.remove("show");
             }
         }
+        const translatedLanguageContainer = document.getElementById("translated-language-container");
     }
 }
 // Update dropdown when selected 
 function updateSelection(selection) {
     const dropButton = document.getElementById("dropbutton-selection");
-    dropButton.textContent = selection;
+    dropButton.textContent = capitaliseFirstLetter(selection);
     document.getElementById("navDropdown").classList.remove("show");
+}
+
+function capitaliseFirstLetter(val) {
+    return String(val).charAt(0).toUpperCase() + String(val).slice(1);
 }
