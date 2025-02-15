@@ -4,6 +4,33 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Doto:wght@100..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=B612:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Advent+Pro:ital,wght@0,100..900;1,100..900&family=Caveat:wght@400..700&family=Climate+Crisis&family=DynaPuff:wght@400..700&family=Honk&family=Oswald:wght@200..700&family=Shantell+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+/* Font List
+Open Sans
+Outfit
+Lexend Deca
+Inter
+Doto
+B612 
+
+TitleFonts:
+- DynaPuff
+- Honk
+- Climate Crisis
+- Shantell Sans
+- Advent Pro
+- Oswald
+- Caveat 
+*/
+
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v8.4.14,
+* Autoprefixer: v10.4.7
+* Browsers: last 4 version
+*/
+
+
 
 * {
     /* cursor: url("./img/cursorPS.png"); */
@@ -192,19 +219,89 @@ nav {
     display:block;
 }
 
+.home-content {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.home-page #content {
+    display: flex;
+    justify-content: flex-start;
+    /* align-items: flex-start; */
+    padding-left: 100px;
+    flex-direction: row;
+}
+
 .homepage-title {
-    font-size: 75px;
+    font-size: 60px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    /* justify-content: center; */
+    /* align-items: center; */
     z-index: 1;
     text-shadow: 1px 1px 40px black;
+    height: 4em;
+    width: 8em;
+    margin-top: -70px;
+    /* position:absolute; */
+    /* top: 50%; */
+    /* left: 30%; */
+    /* transform: translate(-50%, -50%); */
 }
 .homepage-title h1 {
     margin: 0px;
     padding: 0px;
-    font-family: "Doto", Arial, sans-serif;
+    font-family: "B612", Arial, sans-serif;
+}
+
+.typewriter {
+    padding-right: 10vw;
+    text-align: left;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.typewriter h2 {
+    overflow: hidden;
+    /* border-right: .15em solid orange; */
+    white-space: nowrap;
+    margin: 0 auto;
+    letter-spacing: .15em;
+    display: inline-block;
+    padding-right: .1em;
+    font-size: 20px;
+}
+
+.typewriter-cadet {
+    display: inline-block;
+    height: 25px;
+    width: 3px;
+    /* background-color: orange; */
+
+    animation:
+        blink-caret 1s step-end infinite;
+        /* blink-caret 1.5s steps(2) infinite; */
+}
+
+/* Typing effect */
+/* @keyframes typing {
+    from {
+        width: 0;
+    }
+    to {
+        width: 100%;
+    }
+} */
+
+/* Cursor blinking */
+@keyframes blink-caret {
+    from, to {
+        background-color: invisible;
+    }
+    50% {
+        background-color: orange;
+    }
 }
 
 /* Default main style */
@@ -269,23 +366,24 @@ main div img {
 
 .departures-row {
     display: flex;
-    width: 80%;
+    width: 75%;
     height: 5vh;
     background-color: rgb(20, 23, 30);
     border-radius: 5px;
     padding: 5px;
     padding-left: 17px;
+    padding-top: 7px;
     justify-content: space-between;
     align-items: center;
 }
 
 .departures-item {
     flex: 1;
-    font-size: 23px;
+    font-size: 17px;
 }
 
 .time {
-    color: yellow;
+    color: rgba(255, 255, 0, 0.94);
 }
 
 #departures-table-label, #departures-table-label * {

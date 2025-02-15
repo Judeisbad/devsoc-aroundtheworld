@@ -2,6 +2,47 @@ const cursor = document.querySelector(".custom-cursor");
 const cursorEarth = document.querySelector(".custom-cursor-earth");
 const headerContainer = document.getElementById("header-container");
 const contentContainer = document.getElementById("content");
+let fontInterval;
+
+// Change font
+// const fonts = ["B612", "Lexend Deca", "Open Sans", "Outfit", "Doto", "Inter"];
+const fonts = ["B612", "Doto", "DynaPuff", "Climate Crisis",
+        "Shantell Sans", "Advent Pro", "Oswald", "Caveat"]
+let index = 0;
+
+
+function changeFont() {
+    const elements = document.querySelectorAll(".changing-font");
+    index = (index + 1) % fonts.length;
+    elements.forEach(el => {
+        el.style.fontFamily = fonts[getRandomInt(0, fonts.length)];
+        el.style.fontWeight = getRandomInt(100, 800);
+        el.style.color = `rgb(${getRandomInt(0, 255)}, ${getRandomInt(0, 255)}, ${getRandomInt(0, 255)})`;
+    });
+}
+
+function typewriter(input_text, delay=100) {
+    const target = document.getElementById("typewriter-text");
+    console.log(target);
+    target.innerHTML = "";
+    let i = 0;
+    let n = input_text.length;
+    function type() {
+        if (i < n) {
+            target.textContent += input_text[i++];
+            setTimeout(type, delay);
+        }
+    }
+    type(delay=70);
+}
+
+
+function getRandomInt(min, max) {
+    return Math.floor(Math.random() * (max-min)) + min;
+}
+
+
+
 
 function loadPage(page) {
     const loadingScreen = document.getElementById("loading-screen");
@@ -19,7 +60,15 @@ function loadPage(page) {
         localStorage.setItem("lastPage", page);
 
         updateSelection(page);
-    })
+       
+        if (page === "home") {
+            changeFont();
+            fontInterval = setInterval(changeFont, 1500);
+            typewriter("Use the dropdown menu above to navigate!");
+        } else {
+            clearInterval(fontInterval);
+        }
+    });
 }
 
 // Page changing scripts
@@ -95,3 +144,4 @@ function updateSelection(selection) {
 function capitaliseFirstLetter(val) {
     return String(val).charAt(0).toUpperCase() + String(val).slice(1);
 }
+
