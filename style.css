@@ -30,8 +30,6 @@ TitleFonts:
 * Browsers: last 4 version
 */
 
-
-
 * {
     /* cursor: url("./img/cursorPS.png"); */
     cursor: none;
@@ -392,7 +390,7 @@ main div img {
 }
 
 .ontime {
-    color: green;
+    color: rgb(47, 204, 47);
 }
 
 .delayed {
@@ -400,5 +398,5 @@ main div img {
 }
 
 .cancelled {
-    color: red;
+    color: rgb(212, 0, 0);
 }
