@@ -390,3 +390,15 @@ main div img {
     background-color: unset;
     color: lightgray;
 }
+
+.ontime {
+    color: green;
+}
+
+.delayed {
+    color: orange;
+}
+
+.cancelled {
+    color: red;
+}

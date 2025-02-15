@@ -12,12 +12,13 @@ let index = 0;
 
 
 function changeFont() {
+    console.log("CHANGEFONT");
     const elements = document.querySelectorAll(".changing-font");
     index = (index + 1) % fonts.length;
     elements.forEach(el => {
         el.style.fontFamily = fonts[getRandomInt(0, fonts.length)];
         el.style.fontWeight = getRandomInt(100, 800);
-        el.style.color = `rgb(${getRandomInt(0, 255)}, ${getRandomInt(0, 255)}, ${getRandomInt(0, 255)})`;
+        el.style.color = `rgb(${getRandomInt(70, 255)}, ${getRandomInt(70, 255)}, ${getRandomInt(70, 255)})`;
     });
 }
 
