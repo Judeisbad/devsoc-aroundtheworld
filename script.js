@@ -3,16 +3,22 @@ const cursorEarth = document.querySelector(".custom-cursor-earth");
 const headerContainer = document.getElementById("header-container");
 const contentContainer = document.getElementById("content");
 let fontInterval;
-
+let curPage;
 // Change font
 // const fonts = ["B612", "Lexend Deca", "Open Sans", "Outfit", "Doto", "Inter"];
 const fonts = ["B612", "Doto", "DynaPuff", "Climate Crisis",
         "Shantell Sans", "Advent Pro", "Oswald", "Caveat"]
 let index = 0;
 
+// Track whether the page have been loaded at least once
+let pageLoaded = {
+    "home": false,
+    "about": false,
+    "interests": false
+};
 
 function changeFont() {
-    console.log("CHANGEFONT");
+    // console.log("CHANGEFONT");
     const elements = document.querySelectorAll(".changing-font");
     index = (index + 1) % fonts.length;
     elements.forEach(el => {
@@ -46,8 +52,8 @@ function getRandomInt(min, max) {
 
 
 function loadPage(page) {
+    curPage = page;
     // const loadingScreen = document.getElementById("loading-screen");
-
     Promise.all([
         fetch(`./html/${page}/${page}-header.html`).then(response => response.text()),
         fetch(`./html/${page}/${page}.html`).then(response => response.text())
@@ -61,24 +67,32 @@ function loadPage(page) {
         localStorage.setItem("lastPage", page);
 
         updateSelection(page);
-       
-        if (page === "home") {
-            contentContainer.style.backgroundImage = "";
-            contentContainer.style.backgroundColor = "rgb(39, 45, 57)";
-            changeFont();
-            fontInterval = setInterval(changeFont, 1500);
-            typewriter("Use the dropdown menu above to navigate!");
-        } else if (page === "interests") {
-            clearInterval(fontInterval);
-            contentContainer.style.backgroundColor = "rgb(0, 172, 196)";
-            contentContainer.style.backgroundImage = "url(https://images.unsplash.com/photo-1548268770-66184a21657e?q=80&w=2127&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)";
-            contentContainer.style.backgroundBlendMode = "lighten";
-        } else if (page === "about") {
-            contentContainer.style.backgroundImage = "";
-            contentContainer.style.backgroundColor = "rgb(39, 45, 57)";
-            clearInterval(fontInterval);
-        }
+        updateStyles(page);
+        pageLoaded[page] = true;
     });
+}
+
+// Update styles for a page
+function updateStyles(page) {
+    if (page === "home") {
+        contentContainer.style.backgroundImage = "";
+        contentContainer.style.backgroundColor = "rgb(39, 45, 57)";
+        changeFont();
+        fontInterval = setInterval(changeFont, 1500);
+        typewriter("Use the dropdown menu above to navigate!");
+    } else if (page === "interests") {
+        clearInterval(fontInterval);
+        contentContainer.style.backgroundColor = "rgb(0, 172, 196)";
+        contentContainer.style.backgroundImage = "url(https://images.unsplash.com/photo-1548268770-66184a21657e?q=80&w=2127&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)";
+        contentContainer.style.backgroundBlendMode = "lighten";
+        if (!pageLoaded[page]) { // If the page hasn't been loaded before
+            setupIconClickHandler();
+        }
+    } else if (page === "about") {
+        clearInterval(fontInterval);
+        contentContainer.style.backgroundImage = "";
+        contentContainer.style.backgroundColor = "rgb(39, 45, 57)";
+    }
 }
 
 // Page changing scripts
@@ -155,3 +169,29 @@ function capitaliseFirstLetter(val) {
     return String(val).charAt(0).toUpperCase() + String(val).slice(1);
 }
 
+// Controls border on/off on icons
+function setupIconClickHandler() {
+    // console.log("SETUPICONCLICK");
+    const icons = document.querySelectorAll(".icon-container");
+    document.addEventListener("click", (event) => {
+        let clickedIcon = null;
+        // console.log("DEBUG" + event.target);
+        icons.forEach(icon => {
+            if (icon.contains(event.target)) {
+                clickedIcon = icon;
+            } else {
+                icon.classList.remove("active");
+            }
+        })
+        if (clickedIcon) {
+            clickedIcon.classList.add("active");
+        }
+        if (event.detail === 2) { // If it's a doubleclick
+            handleDoubleClick(icon); // Open window
+        }
+    })
+}
+
+function handleDoubleClick(icon) {
+    ;
+}

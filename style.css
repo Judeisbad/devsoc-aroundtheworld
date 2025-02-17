@@ -425,12 +425,20 @@ main div img {
     position: relative;
     aspect-ratio: 1 / 1;
     padding: 5px;
+    text-shadow: 1px 1px rgba(0, 0, 0, 0.4),
+        0px 2px 5px rgba(0, 0, 0, 0.3);
+    outline: 1px solid transparent;
+    border-radius: 4px;
+}
+
+.icon-container.active {
+    outline: 1px dotted white;
 }
 
 .icon-container:hover {
     background-color: rgba(255, 255, 255, 0.1);
     filter: brightness(150%);
-    border-radius: 5px;
+    /* text-shadow: unset; */
 }
 
 .icon {
