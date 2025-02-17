@@ -30,7 +30,7 @@ function changeFont() {
 
 function typewriter(input_text, delay=100) {
     const target = document.getElementById("typewriter-text");
-    console.log(target);
+    // console.log(target);
     target.innerHTML = "";
     let i = 0;
     let n = input_text.length;
