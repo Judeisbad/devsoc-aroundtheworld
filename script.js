@@ -46,7 +46,7 @@ function getRandomInt(min, max) {
 
 
 function loadPage(page) {
-    const loadingScreen = document.getElementById("loading-screen");
+    // const loadingScreen = document.getElementById("loading-screen");
 
     Promise.all([
         fetch(`./html/${page}/${page}-header.html`).then(response => response.text()),
@@ -63,10 +63,19 @@ function loadPage(page) {
         updateSelection(page);
        
         if (page === "home") {
+            contentContainer.style.backgroundImage = "";
+            contentContainer.style.backgroundColor = "rgb(39, 45, 57)";
             changeFont();
             fontInterval = setInterval(changeFont, 1500);
             typewriter("Use the dropdown menu above to navigate!");
-        } else {
+        } else if (page === "interests") {
+            clearInterval(fontInterval);
+            contentContainer.style.backgroundColor = "rgb(0, 172, 196)";
+            contentContainer.style.backgroundImage = "url(https://images.unsplash.com/photo-1548268770-66184a21657e?q=80&w=2127&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)";
+            contentContainer.style.backgroundBlendMode = "lighten";
+        } else if (page === "about") {
+            contentContainer.style.backgroundImage = "";
+            contentContainer.style.backgroundColor = "rgb(39, 45, 57)";
             clearInterval(fontInterval);
         }
     });
