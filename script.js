@@ -171,6 +171,7 @@ function capitaliseFirstLetter(val) {
 function setupIconClickHandler() {
     // console.log("SETUPICONCLICK");
     const icons = document.querySelectorAll(".icon-container");
+    const windows = document.querySelectorAll(".window")
     document.addEventListener("click", (event) => {
         if (!event.target.classList.contains("icon-element")) {
             // console.log("Cancelled");
@@ -179,6 +180,7 @@ function setupIconClickHandler() {
         let clickedIcon = null;
         // console.log("DEBUG" + event.target);
         icons.forEach(icon => {
+            // Check active icon
             if (icon.contains(event.target)) {
                 clickedIcon = icon;
             } else {
@@ -191,14 +193,59 @@ function setupIconClickHandler() {
         if (event.detail === 2) { // If it's a doubleclick
             openWindow(clickedIcon); // Open window
         }
+        windows.forEach(window => {
+            dragElement(window);
+        })
     })
 }
 
 function openWindow(icon) {
     const iconID = icon.id;
     // console.log(iconID);
-    let windowName = `${iconID.split("-")[0]}-window`;
+    const windowName = `${iconID.split("-")[0]}-window`;
     const window = document.getElementById(windowName);
     window.style.display = "flex";
 }
 
+function closeWindow(element) {
+    const elementID = element.id;
+    const windowName = `${elementID.split("-")[0]}-window`;
+    const window = document.getElementById(windowName);
+    window.style.display = "none";
+}
+
+function dragElement(element) {
+    let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+    if (document.getElementById(element.id + "-header")) {
+        // Move div from header
+        document.getElementById(element.id + "-header").onmousedown = dragMouseDown;
+    } else {
+        // If nonexitant, move div from element
+        document.getElementById(element.id).onmousedown = dragMouseDown;
+    }
+
+
+    function dragMouseDown(e) {
+        e.preventDefault();
+        pos3 = e.mouseX;
+        pos4 = e.mouseY;
+        document.onmouseup = closeDragElement;
+        document.onmousemove = elementDrag;
+    }
+
+    function elementDrag(e) {
+        e.preventDefault();
+        // Calculate offset
+        pos1 = pos3 - e.clientX;
+        pos2 = pos4 - e.clientY;
+        pos3 = e.clientX;
+        pos4 = e.clientY;
+        element.style.top = (element.offsetTop - pos2) + "px";
+        element.style.left = (element.offsetLeft - pos1) + "px";
+    }
+
+    function closeDragElement() {
+        document.onmouseup = null;
+        document.onmousemove = null;
+    }
+}
