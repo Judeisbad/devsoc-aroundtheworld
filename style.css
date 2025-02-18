@@ -74,7 +74,7 @@ nav {
     background-size: contain;
     background-repeat: no-repeat;
     pointer-events: none;
-    z-index: 10;
+    z-index: 99999;
 }
 
 .custom-cursor {
@@ -163,6 +163,13 @@ nav {
     color: rgb(120, 120, 120);
 }
 
+header {
+    position: absolute;
+    width: 100%;
+    background-color: white;
+}
+
+
 .dropdown {
     position: relative;
     display: inline-block;
@@ -196,7 +203,7 @@ nav {
     display: none;
     position: absolute;
     min-width: 160px;
-    z-index: 5;
+    z-index: 9999;
     box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.3),
       -5px 4px 5px rgba(0, 0, 0, 0.2), 5px 4px 5px rgba(0, 0, 0, 0.2);
 }
@@ -206,7 +213,6 @@ nav {
     text-decoration: none;
     display: block;
     background-color: white;
-    z-index: 1;
 }
 
 .dropdown-content a:hover, #original-language-container:hover {
@@ -408,11 +414,6 @@ main div img {
     color: rgb(212, 0, 0);
 }
 
-.draggable {
-    position: absolute;
-    z-index: 2;
-}
-
 #icons-list {
     display: flex;
     flex-direction: column;
@@ -462,11 +463,11 @@ main div img {
     position: absolute;
     z-index: 3;
     /* border: 2px solid blue; */
-    box-shadow: 1px 1px 3px darkblue,
-        -1px 1px 3px darkblue;
+    box-shadow: 1px 1px 2px darkblue,
+        -1px 1px 2px darkblue;
     /* DEBUG */
-    display: flex; 
-    /* display: none; */
+    /* display: flex;  */
+    display: none;
     flex-direction: column;
     min-width: 300px;
     min-height: 200px;
@@ -482,17 +483,19 @@ main div img {
     padding: 3px;
     padding-left: 5px;
     height: 18px;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 700;
     display: flex;
     align-items: flex-end;
-    z-index: auto;
+    justify-content: space-between;
+    /* z-index: auto; */
     background-color: rgba(0, 0, 255, 0.5);
     /* box-shadow: -1px -1px 1px gray inset; */
     color: white;
-    backdrop-filter: blur(5px);
+    /* backdrop-filter: blur(5px); */
     border-top-left-radius:5px;
     border-top-right-radius:5px;
+    text-shadow: 1px 1px 1px black;
 }
 
 .window-content {
@@ -520,4 +523,44 @@ main div img {
 #manga-window {
     top: 50%;
     left: 50%;
+}
+
+.close-button {
+    width: 17px;
+    height: 17px;
+    border-radius: 2px;
+    /* box-shadow: 0px 0px 1px white; */
+    /* box-shadow: 1px 1px 1px rgb(190, 0, 0); */
+    margin-right: 1px;
+    align-self: center;
+    background-color: red;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    outline: none;
+    border: none;
+    box-shadow: 1px 1px 2px rgb(50, 50, 50),
+        1px 1px 3px rgba(255, 255, 255, 0.6) inset;
+    /* background-image: url("./img/cross.svg"); */
+    /* background-size: 24px; */
+    /* background-repeat: no-repeat; */
+    /* background-position: center; */
+}
+
+.close-button:active {
+    box-shadow: 1px 1px 2px rgb(50, 50, 50) inset;
+}
+
+.close-button-image {
+    width: 17px;
+    height: 17px;
+    position: absolute;
+    background-image: url("./img/cross.svg");
+    background-size: 24px;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.invert-colour {
+    filter: invert(70%);
 }

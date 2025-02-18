@@ -4,6 +4,8 @@ const headerContainer = document.getElementById("header-container");
 const contentContainer = document.getElementById("content");
 let fontInterval;
 let curPage;
+let highestZIndex = 5;
+const maxZIndex = 30;
 // Change font
 // const fonts = ["B612", "Lexend Deca", "Open Sans", "Outfit", "Doto", "Inter"];
 const fonts = ["B612", "Doto", "DynaPuff", "Climate Crisis",
@@ -171,12 +173,14 @@ function capitaliseFirstLetter(val) {
 function setupIconClickHandler() {
     // console.log("SETUPICONCLICK");
     const icons = document.querySelectorAll(".icon-container");
-    const windows = document.querySelectorAll(".window")
+    const windows = document.querySelectorAll(".window");
+    // Check doubleclicked icon (and singleclick)
     document.addEventListener("click", (event) => {
         if (!event.target.classList.contains("icon-element")) {
             // console.log("Cancelled");
             return;
         }
+        // If it's an icon that's clicked
         let clickedIcon = null;
         // console.log("DEBUG" + event.target);
         icons.forEach(icon => {
@@ -186,17 +190,44 @@ function setupIconClickHandler() {
             } else {
                 icon.classList.remove("active");
             }
-        })
+        });
         if (clickedIcon) {
             clickedIcon.classList.add("active");
         }
+        // console.log(clickedIcon);
         if (event.detail === 2) { // If it's a doubleclick
             openWindow(clickedIcon); // Open window
         }
         windows.forEach(window => {
             dragElement(window);
-        })
+        });
+    });
+    // Handle window overlap
+    document.addEventListener("mousedown", (event) => {
+        if (!event.target.closest(".window")) {
+            return;
+        }
+        const clickedWindow = event.target.closest(".window");
+    
+        if (clickedWindow) {
+            clickedWindow.style.zIndex = ++highestZIndex;
+        }
+        if (highestZIndex > maxZIndex) {
+            resetZIndex();
+        }
     })
+}
+
+function resetZIndex() {
+    const windows = [...document.querySelectorAll(".window")];
+    windows.sort((a, b) => {
+        a.style.zIndex - b.style.zIndex;
+    });
+    highestZIndex = 5; // Baseline z index
+    windows.forEach((window, index) => {
+        window.style.zIndex = highestZIndex + index;
+    })
+    highestZIndex += windows.length - 1;
 }
 
 function openWindow(icon) {
@@ -249,3 +280,4 @@ function dragElement(element) {
         document.onmousemove = null;
     }
 }
+
