@@ -85,9 +85,7 @@ function updateStyles(page) {
         contentContainer.style.backgroundColor = "rgb(0, 172, 196)";
         contentContainer.style.backgroundImage = "url(https://images.unsplash.com/photo-1548268770-66184a21657e?q=80&w=2127&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)";
         contentContainer.style.backgroundBlendMode = "lighten";
-        if (!pageLoaded[page]) { // If the page hasn't been loaded before
-            setupIconClickHandler();
-        }
+        setupIconClickHandler();
     } else if (page === "about") {
         clearInterval(fontInterval);
         contentContainer.style.backgroundImage = "";
@@ -174,6 +172,10 @@ function setupIconClickHandler() {
     // console.log("SETUPICONCLICK");
     const icons = document.querySelectorAll(".icon-container");
     document.addEventListener("click", (event) => {
+        if (!event.target.classList.contains("icon-element")) {
+            // console.log("Cancelled");
+            return;
+        }
         let clickedIcon = null;
         // console.log("DEBUG" + event.target);
         icons.forEach(icon => {
@@ -187,11 +189,16 @@ function setupIconClickHandler() {
             clickedIcon.classList.add("active");
         }
         if (event.detail === 2) { // If it's a doubleclick
-            handleDoubleClick(icon); // Open window
+            openWindow(clickedIcon); // Open window
         }
     })
 }
 
-function handleDoubleClick(icon) {
-    ;
+function openWindow(icon) {
+    const iconID = icon.id;
+    // console.log(iconID);
+    let windowName = `${iconID.split("-")[0]}-window`;
+    const window = document.getElementById(windowName);
+    window.style.display = "flex";
 }
+
