@@ -301,11 +301,11 @@ function dragElement(element) {
 function fullScreen() {
     const fullscreenElement = document.getElementById("fullscreen");
     if (!document.fullscreenElement) {
-        document.documentElement.requestFullscreen();
         fullscreenElement.innerHTML = "Exit Fullscreen";
+        document.documentElement.requestFullscreen();
     } else if (document.exitFullscreen) {
-        document.exitFullscreen();
         fullscreenElement.innerHTML = "Fullscreen";
+        document.exitFullscreen();
     }
 }
 
