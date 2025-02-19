@@ -90,6 +90,7 @@ function updateStyles(page) {
         contentContainer.style.backgroundBlendMode = "lighten";
         setupIconClickHandler();
         setupYoutubeMouseInteraction();
+        setTime();
     } else if (page === "about") {
         clearInterval(fontInterval);
         contentContainer.style.backgroundImage = "";
@@ -296,3 +297,16 @@ function dragElement(element) {
     }
 }
 
+// Turn window fullscreen
+function fullScreen() {
+    if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen();
+    }
+}
+
+// Set time for element
+function setTime() {
+    const timeElement = document.getElementById("time");
+    let curTime = new Date();
+    timeElement.innerHTML = `${curTime.getHours()}:${curTime.getMinutes()}`;
+}
