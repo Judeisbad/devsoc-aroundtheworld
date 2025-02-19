@@ -67,7 +67,7 @@ nav {
     height: auto;
 }
 
-.custom-cursor, .custom-cursor-earth {
+#custom-cursor, #custom-cursor-earth {
     position: fixed;
     width: 24px;
     height: 24px;
@@ -77,11 +77,12 @@ nav {
     z-index: 99999;
 }
 
-.custom-cursor {
+#custom-cursor {
     background-image: url("./img/circlecursorOutlineUpdated.png");
+    transform-origin: 16.3px 17px;
 }
 
-.custom-cursor-earth {
+#custom-cursor-earth {
     background-image: url("./img/earth32.png");
 }
 
@@ -92,10 +93,6 @@ nav {
 
 .rotating-image {
     animation: rotate 5s linear infinite;
-}
-
-.custom-cursor {
-    transform-origin: 16.3px 17px;
 }
 
 @keyframes rotate {
@@ -461,6 +458,8 @@ main div img {
 
 .window {
     position: absolute;
+    margin: 0;
+    padding: 0;
     z-index: 3;
     /* border: 2px solid blue; */
     box-shadow: 1px 1px 2px darkblue,
@@ -471,10 +470,13 @@ main div img {
     flex-direction: column;
     min-width: 300px;
     min-height: 200px;
+    height: auto;
     border-radius: 5px 5px 7px 7px;
     color: black;
     font-family: "Gemunu Libre", 'Courier New', Courier, monospace;
     letter-spacing: 1px;
+    overflow: hidden;
+    resize: both;
     /* border-top-left-radius: 4px; */
     /* border-top-right-radius: 4px; */
 }
@@ -503,6 +505,8 @@ main div img {
     flex: 1;
     border-bottom-left-radius: 7px;
     border-bottom-right-radius: 7px;
+    display: flex;
+    font-size: 0;
 }
 
 #music-window {
@@ -563,4 +567,36 @@ main div img {
 
 .invert-colour {
     filter: invert(70%);
+}
+
+.content-container {
+    margin: 5px;
+    margin-bottom: 5px;
+    display: flex;
+    flex: 1;
+}
+
+.youtube-embed {
+    border: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    border-radius: 5px;
+    flex: 1;
+}
+
+.hidden {
+    display: none;
+}
+
+video {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+    flex: 1;
+}
+
+#manga-image {
+    opacity: 0.8;
 }

@@ -1,5 +1,6 @@
-const cursor = document.querySelector(".custom-cursor");
-const cursorEarth = document.querySelector(".custom-cursor-earth");
+const cursor = document.getElementById("custom-cursor");
+const cursorEarth = document.getElementById("custom-cursor-earth");
+const cursorContainer = document.getElementById("cursor-container");
 const headerContainer = document.getElementById("header-container");
 const contentContainer = document.getElementById("content");
 let fontInterval;
@@ -88,6 +89,7 @@ function updateStyles(page) {
         contentContainer.style.backgroundImage = "url(https://images.unsplash.com/photo-1548268770-66184a21657e?q=80&w=2127&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)";
         contentContainer.style.backgroundBlendMode = "lighten";
         setupIconClickHandler();
+        setupYoutubeMouseInteraction();
     } else if (page === "about") {
         clearInterval(fontInterval);
         contentContainer.style.backgroundImage = "";
@@ -110,13 +112,11 @@ document.addEventListener("mousemove", (e) => {
 });
 
 document.addEventListener("mouseleave", () => {
-    cursor.style.display = "none";
-    cursorEarth.style.display = "none";
+    cursorContainer.classList.add("hidden");
 });
 
 document.addEventListener("mouseenter", () => {
-    cursor.style.display = "block";
-    cursorEarth.style.display = "block";
+    cursorContainer.classList.remove("hidden");
 });
 
 document.querySelectorAll('a, button').forEach((element) => {
@@ -208,14 +208,28 @@ function setupIconClickHandler() {
             return;
         }
         const clickedWindow = event.target.closest(".window");
-    
-        if (clickedWindow) {
-            clickedWindow.style.zIndex = ++highestZIndex;
-        }
-        if (highestZIndex > maxZIndex) {
-            resetZIndex();
-        }
-    })
+        raiseZIndex(clickedWindow);
+    });
+}
+
+function setupYoutubeMouseInteraction() {
+    const youtubeEmbeds = document.querySelectorAll(".youtube-embed");
+    youtubeEmbeds.forEach(youtubeEmbed => {
+        youtubeEmbed.addEventListener("mouseenter", () => {
+            cursorContainer.classList.add("hidden");
+        });
+        youtubeEmbed.addEventListener("mouseleave", () => {
+            cursorContainer.classList.remove("hidden");
+        });
+    });
+}
+
+function raiseZIndex(clickedWindow) {
+    if (clickedWindow) {
+        clickedWindow.style.zIndex = ++highestZIndex;
+    } if (highestZIndex > maxZIndex) {
+        resetZIndex();
+    }
 }
 
 function resetZIndex() {
@@ -236,6 +250,7 @@ function openWindow(icon) {
     const windowName = `${iconID.split("-")[0]}-window`;
     const window = document.getElementById(windowName);
     window.style.display = "flex";
+    raiseZIndex(window);
 }
 
 function closeWindow(element) {

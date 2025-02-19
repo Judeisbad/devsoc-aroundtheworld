@@ -33,9 +33,9 @@ Windows List
             </button>
         </div>
         <div class="window-content">
-            <span>Testing</span>
-            <span>Testing2</span>
-            <span>Testing3</span>
+            <div id="music-video-container" class="content-container">
+                <iframe src="https://www.youtube.com/embed/videoseries?si=x2YS6S8BjYon_pFY&amp;list=PLgEOWJsnWaRb-x9bICREBTS6wqKEOsy6Z&autoplay=1&loop=1" class="youtube-embed" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
         </div>
     </div>
     <div id="game-window" class="window">
@@ -46,22 +46,24 @@ Windows List
             </button>
         </div>
         <div class="window-content">
-            <span>Testing</span>
-            <span>Testing2</span>
-            <span>Testing3</span>
+            <div class="content-container">
+                <video src="./img/game.webm" type="video/webm" autoplay loop
+                    onloadedmetadata="this.muted = true"></video>
+            </div>
         </div>
     </div>
     <div id="baseball-window" class="window">
         <div id="baseball-window-header" class="window-header">
-            <span>Baseball</span>
+            <span>Watching Baseball</span>
             <button id="baseball-close-button" class="close-button" onclick="closeWindow(this)">
                 <span class="close-button-image invert-colour"></span>
             </button>
         </div>
         <div class="window-content">
-            <span>Testing</span>
-            <span>Testing2</span>
-            <span>Testing3</span>
+            <div class="content-container">
+                <video src="./img/baseball.webm" type="video/webm" autoplay loop
+                    onloadedmetadata="this.muted = true"></video>
+            </div>
         </div>
     </div>
     <div id="manga-window" class="window">
@@ -72,9 +74,9 @@ Windows List
             </button>
         </div>
         <div class="window-content">
-            <span>Testing</span>
-            <span>Testing2</span>
-            <span>Testing3</span>
+            <div class="content-container">
+                <img id="manga-image" src="./img/manga.jpg">
+            </div>
         </div>
     </div>
 </div>
