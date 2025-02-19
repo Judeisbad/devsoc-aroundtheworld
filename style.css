@@ -666,7 +666,7 @@ video {
 /* Temporary Clock */
 #clock-container {
     position: absolute;
-    top: 200px;
+    top: 120px;
     left: calc(100% - 30px - 150px);
     /* display: flex;
     justify-content: center;
