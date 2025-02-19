@@ -299,8 +299,13 @@ function dragElement(element) {
 
 // Turn window fullscreen
 function fullScreen() {
+    const fullscreenElement = document.getElementById("fullscreen");
     if (!document.fullscreenElement) {
         document.documentElement.requestFullscreen();
+        fullscreenElement.innerHTML = "Exit Fullscreen";
+    } else if (document.exitFullscreen) {
+        document.exitFullscreen();
+        fullscreenElement.innerHTML = "Fullscreen";
     }
 }
 
