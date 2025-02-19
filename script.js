@@ -3,7 +3,6 @@ const cursorEarth = document.getElementById("custom-cursor-earth");
 const cursorContainer = document.getElementById("cursor-container");
 const headerContainer = document.getElementById("header-container");
 const contentContainer = document.getElementById("content");
-let curTime = new Date();
 let fontInterval;
 let curPage;
 let highestZIndex = 5;
@@ -312,25 +311,31 @@ function fullScreen() {
 }
 
 // Set time for element
-function setTime() {
+function setTime(curTime) {
     const timeElement = document.getElementById("time");
     let hourString = String(curTime.getHours()).padStart(2, '0');
     let minuteString = String(curTime.getMinutes()).padStart(2, '0');
     timeElement.innerHTML = `${hourString}:${minuteString}`;
 }
 
-function setAnalogueTime() {
+function setAnalogueTime(curTime) {
     const hourHand = document.getElementById("hour-hand");
     const minuteHand = document.getElementById("minute-hand");
-    const hourHandRotateBy = (curTime.getHours() % 12 * 30) + (curTime.getMinutes()*0.5);
-    hourHand.style.transform = `rotate(${hourHandRotateBy}deg)`;
-    const minuteHandRotateBy = curTime.getMinutes() * (360 / 60);
-    minuteHand.style.transform = `rotate(${minuteHandRotateBy}deg)`;
+    const secondHand = document.getElementById("second-hand");
+    // Calculate rotation
+    let hourHandRotateBy = (curTime.getHours() % 12 * 30) + (curTime.getMinutes() * (30 / 60));
+    let minuteHandRotateBy = (curTime.getMinutes() * (360 / 60)) + (curTime.getSeconds() * (6 / 60));
+    let secondHandRotateBy = (curTime.getSeconds() * (360 / 60));
+    // Apply styles
+    hourHand.style.rotate = `${hourHandRotateBy}deg`;
+    minuteHand.style.rotate = `${minuteHandRotateBy}deg`;
+    secondHand.style.rotate = `${secondHandRotateBy}deg`;    
 }
 
 function updateClock() {
-    setTime();
-    setAnalogueTime();
+    const curTime = new Date();
+    setTime(curTime);
+    // setAnalogueTime(curTime);
 }
 
 setInterval(updateClock, 1000);
