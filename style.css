@@ -662,3 +662,53 @@ video {
     top: calc(100% - 2em);
     left: 20px;
 }
+
+/* Temporary Clock */
+#clock-container {
+    position: absolute;
+    top: 200px;
+    left: calc(100% - 30px - 150px);
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
+    /* transform: translate(-50%, -50%); */
+}
+
+#clock-background #circle {
+    position:absolute;
+    height: 100px;
+    width: 100px;
+    background-color: rgba(255, 255, 255, 0.4);
+    border-radius: 50%;
+    border: 4px solid black;
+}
+
+#clock-background #incircle {
+    position:absolute;
+    height: 9px;
+    width: 9px;
+    background-color: black;
+    border-radius: 50%;
+    margin-left: 47px;
+    margin-top: 47px;
+}
+
+#hour-hand {
+    height: 30px;
+    width: 4px;
+    background-color: red;
+    position: absolute;
+    margin-left: 50px;
+    margin-top: 20px;
+    transform-origin: 2px 100%;
+}
+
+#minute-hand {
+    height: 50px;
+    width: 4px;
+    background-color: red;
+    position: absolute;
+    margin-left: 50px;
+    transform: rotate(30deg);
+    transform-origin: 2px 100%;
+}

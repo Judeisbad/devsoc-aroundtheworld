@@ -3,6 +3,7 @@ const cursorEarth = document.getElementById("custom-cursor-earth");
 const cursorContainer = document.getElementById("cursor-container");
 const headerContainer = document.getElementById("header-container");
 const contentContainer = document.getElementById("content");
+let curTime = new Date();
 let fontInterval;
 let curPage;
 let highestZIndex = 5;
@@ -91,6 +92,7 @@ function updateStyles(page) {
         setupIconClickHandler();
         setupYoutubeMouseInteraction();
         setTime();
+        setAnalogueTime();
     } else if (page === "about") {
         clearInterval(fontInterval);
         contentContainer.style.backgroundImage = "";
@@ -312,6 +314,14 @@ function fullScreen() {
 // Set time for element
 function setTime() {
     const timeElement = document.getElementById("time");
-    let curTime = new Date();
     timeElement.innerHTML = `${curTime.getHours()}:${curTime.getMinutes()}`;
+}
+
+function setAnalogueTime() {
+    const hourHand = document.getElementById("hour-hand");
+    const minuteHand = document.getElementById("minute-hand");
+    const hourHandRotateBy = curTime.getHours() % 12 * 30;
+    hourHand.style.transform = `rotate(${hourHandRotateBy}deg)`;
+    const minuteHandRotateBy = curTime.getMinutes() % 60 * (360 / 60);
+    minuteHand.style.transform = `rotate(${minuteHandRotateBy}deg)`;
 }
