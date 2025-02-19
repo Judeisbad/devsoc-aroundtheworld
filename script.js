@@ -314,14 +314,23 @@ function fullScreen() {
 // Set time for element
 function setTime() {
     const timeElement = document.getElementById("time");
-    timeElement.innerHTML = `${curTime.getHours()}:${curTime.getMinutes()}`;
+    let hourString = String(curTime.getHours()).padStart(2, '0');
+    let minuteString = String(curTime.getMinutes()).padStart(2, '0');
+    timeElement.innerHTML = `${hourString}:${minuteString}`;
 }
 
 function setAnalogueTime() {
     const hourHand = document.getElementById("hour-hand");
     const minuteHand = document.getElementById("minute-hand");
-    const hourHandRotateBy = curTime.getHours() % 12 * 30;
+    const hourHandRotateBy = (curTime.getHours() % 12 * 30) + (curTime.getMinutes()*0.5);
     hourHand.style.transform = `rotate(${hourHandRotateBy}deg)`;
-    const minuteHandRotateBy = curTime.getMinutes() % 60 * (360 / 60);
+    const minuteHandRotateBy = curTime.getMinutes() * (360 / 60);
     minuteHand.style.transform = `rotate(${minuteHandRotateBy}deg)`;
 }
+
+function updateClock() {
+    setTime();
+    setAnalogueTime();
+}
+
+setInterval(updateClock, 1000);
