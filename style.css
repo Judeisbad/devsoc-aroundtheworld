@@ -433,6 +433,7 @@ main div img {
         0px 2px 5px rgba(0, 0, 0, 0.3);
     outline: 1px solid transparent;
     border-radius: 4px;
+    user-select: none;
 }
 
 .icon-container.active {
@@ -694,7 +695,7 @@ video {
 }
 
 #hour-hand {
-    /* height: 30px; */
+    height: 30px;
     width: 3px;
     background-color: black;
     position: absolute;
@@ -711,18 +712,19 @@ video {
     width: 3px;
     background-color: black;
     position: absolute;
-    left: 53px;
+    left: 55px;
     top: calc(50px - 25px + 5px);
     transform-origin: 2px 100%;
     transform: translate(-50%, -50%);
 }
 
 #second-hand {
-    /* height: 50px; */
+    height: 50px;
     width: 1px;
     background-color: red;
     position: absolute;
-    margin-top: 2px;
-    margin-left: 52px;
+    top: calc(50px - 25px + 5px);
+    left: 55px;
     transform-origin: 1px 100%; 
+    transform: translate(-50%, -50%);
 }
